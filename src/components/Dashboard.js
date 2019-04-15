@@ -22,6 +22,10 @@ class Dashboard extends Component {
               placeholder="placeholder"
             />
             <button className="btn btn-success">Change Location</button>
+            <div className="col mt-1">
+              <button className="btn btn-primary ml-1">5 days forecast</button>
+              <button className="btn btn-primary ml-1">10 days forecast</button>
+            </div>
           </div>
         </div>
         <div className="row mt-5">

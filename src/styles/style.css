@@ -1,0 +1,24 @@
+body {
+  background: #3f51b5;
+  color: #fff;
+  font-family: "Roboto", sans-serif;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+.inputLocation {
+  font-size: 13px;
+  padding: 10px;
+  display: inline-block;
+  background: #283593;
+  border: none;
+  width: 230px;
+  text-transform: uppercase;
+}
+
+.placeholder {
+  color: #fff;
+}

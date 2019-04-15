@@ -6,6 +6,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Weather dashboard</h1>
+        <button className="btn btn-success">Ok</button>
       </div>
     );
   }

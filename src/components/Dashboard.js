@@ -1,6 +1,17 @@
 import React, { Component } from "react";
+import { getWeather } from "../actions/weatherActions";
+
+import { connect } from "react-redux";
 
 class Dashboard extends Component {
+  testApi = () => {
+    console.log(this.props);
+  };
+
+  componentDidMount() {
+    this.props.getWeather();
+  }
+
   render() {
     return (
       // <div className="container">
@@ -21,7 +32,9 @@ class Dashboard extends Component {
               id=""
               placeholder="placeholder"
             />
-            <button className="btn btn-success">Change Location</button>
+            <button className="btn btn-success" onClick={this.testApi}>
+              Change Location
+            </button>
             <div className="col mt-1">
               <button className="btn btn-primary ml-1">5 days forecast</button>
               <button className="btn btn-primary ml-1">10 days forecast</button>
@@ -45,4 +58,11 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard;
+const mapStateToProps = state => ({
+  weather: state.weather
+});
+
+export default connect(
+  mapStateToProps,
+  { getWeather }
+)(Dashboard);

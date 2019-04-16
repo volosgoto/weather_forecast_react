@@ -1,21 +1,18 @@
 import React, { Component } from "react";
+import Location from "./Location";
 import { getWeather } from "../actions/weatherActions";
+import { setLocation } from "../actions/locationActions";
 
 import { connect } from "react-redux";
 
 class Dashboard extends Component {
-  testApi = () => {
-    // console.log(this.props);
-  };
-
   componentDidMount() {
     this.props.getWeather();
-    console.log('componentDidMount', this.props.weather);
-
+    console.log("componentDidMount", this.props.weather);
   }
-  getDeri
   render() {
-    console.log('render', this.props.weather);
+    console.log("render", this.props.weather);
+    // console.log("location", this.props);
     let { weather } = this.props;
     if (weather) {
       return (
@@ -27,31 +24,21 @@ class Dashboard extends Component {
               <p>Temperature: {weather.main.temp} C</p>
               <p>Pressure {weather.main.pressure}</p>
               <p>Wind {weather.wind.deg} m/sec</p>
-              <input
-                type="text"
-                className="inputLocation placeholder"
-                name=""
-                id=""
-                placeholder="placeholder"
-              />
-              <button className="btn btn-success" onClick={this.testApi}>
-                Change Location
-              </button>
+
               <div className="col mt-1">
-                <button className="btn btn-primary ml-1">5 days forecast</button>
-                <button className="btn btn-primary ml-1">10 days forecast</button>
+                <button className="btn btn-primary ml-1">
+                  5 days forecast
+                </button>
+                <button className="btn btn-primary ml-1">
+                  10 days forecast
+                </button>
               </div>
             </div>
           </div>
-          <div className="row mt-5">
-            <div className="col text-center">Recent Places</div>
-          </div>
-          <div className="row mt-5">
-            <div className="col text-left">London</div>
-            <div className="col text-left">Paris</div>
-            <div className="col text-left">Berlin</div>
-            <div className="col text-left">Lviv</div>
-            <div className="col text-left">Madrid</div>
+          <div className="row">
+            <div className="col">
+              <Location weather={weather} />
+            </div>
           </div>
         </div>
       );
@@ -64,14 +51,10 @@ class Dashboard extends Component {
                 <span className="sr-only">Loading...</span>
               </div>
             </div>
-
           </div>
         </div>
-
-      )
+      );
     }
-
-
   }
 }
 
@@ -81,5 +64,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getWeather }
+  { getWeather, setLocation }
 )(Dashboard);

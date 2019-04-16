@@ -8,20 +8,29 @@ import { connect } from "react-redux";
 class Dashboard extends Component {
   componentDidMount() {
     this.props.getWeather();
-    console.log("componentDidMount", this.props.weather);
+    // this.props.setLocation('kyiv');
   }
   render() {
-    console.log("render", this.props.weather);
-    // console.log("location", this.props);
+    console.log("Dashboard render", this.props.weather);
     let { weather } = this.props;
     if (weather) {
       return (
         <div className="container">
-          <div className="row mt-1">
+          <div className="row mt-5">
             <div className="col-md-6 m-auto text-center">
-              <h1>Weather today</h1>
-              <h2>City: Kyiv</h2>
-              <p>Temperature: {weather.main.temp} C</p>
+              {/* <h1>Weather today</h1> */}
+              <h2>{weather.name}</h2>
+              <img
+                src={`http://openweathermap.org/img/w/${
+                  weather.weather[0].icon
+                  }.png`}
+                alt="weather_icon"
+              />
+              <h3>{weather.main.temp}</h3>
+
+              <p>Day: {weather.main.temp_max} </p>
+              <p>Night: {weather.main.temp_min}</p>
+
               <p>Pressure {weather.main.pressure}</p>
               <p>Wind {weather.wind.deg} meter/sec</p>
 
@@ -64,5 +73,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getWeather, setLocation }
+  { getWeather }
 )(Dashboard);

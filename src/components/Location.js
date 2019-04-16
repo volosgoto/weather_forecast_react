@@ -55,7 +55,7 @@ class Location extends Component {
                 <h2>{city.name}</h2>
                 <p>Temp {tempConverter(city.main.temp)}</p>
                 <p>Pressure {pressureConverter(city.main.pressure)} mmHg</p>
-                <p> Wind {city.wind.speed} meter/sec</p>
+                <p>Wind {city.wind.speed} meter/sec</p>
               </div>
             );
           })}

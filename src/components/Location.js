@@ -1,27 +1,20 @@
 import React, { Component } from "react";
 import { setLocation } from "../actions/locationActions";
+import pressureConverter from "../helpers/pressureConverter";
+import tempConverter from "../helpers/tempConverter";
 
 import { connect } from "react-redux";
 
 class Location extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
   setLocationFromInput = () => {
     this.props.setLocation(this.locationInput.value);
     console.log(this.locationInput.value);
-    this.setState({
-      cities: this.locationInput.value
-    });
-
-    this.locationInput.value = "";
+    return (this.locationInput.value = "");
   };
 
   render() {
-    // console.log("Location", this.props.location.cities);
     let cities = this.props.location.cities;
+    console.log("cities", cities);
     return (
       <div>
         <div className="row">
@@ -48,11 +41,21 @@ class Location extends Component {
           <div className="col text-center">Recent Places</div>
         </div>
         <div className="row mt-5">
-          {console.log("cities", cities)}
+          {/* {console.log("cities", cities)} */}
           {cities.map(city => {
             return (
               <div className="col text-left" key={city.id++}>
-                {city.name}
+                <img
+                  src={`http://openweathermap.org/img/w/${
+                    city.weather[0].icon
+                  }.png`}
+                  alt="weather_icon"
+                />
+                <p>{city.weather[0].description} </p>
+                <h2>{city.name}</h2>
+                <p>Temp {tempConverter(city.main.temp)}</p>
+                <p>Pressure {pressureConverter(city.main.pressure)} mmHg</p>
+                <p> Wind {city.wind.speed} meter/sec</p>
               </div>
             );
           })}

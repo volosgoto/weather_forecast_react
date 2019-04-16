@@ -23,7 +23,7 @@ class Dashboard extends Component {
               <h2>City: Kyiv</h2>
               <p>Temperature: {weather.main.temp} C</p>
               <p>Pressure {weather.main.pressure}</p>
-              <p>Wind {weather.wind.deg} m/sec</p>
+              <p>Wind {weather.wind.deg} meter/sec</p>
 
               <div className="col mt-1">
                 <button className="btn btn-primary ml-1">

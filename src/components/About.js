@@ -17,7 +17,7 @@ class About extends Component {
   render() {
     let { city } = this.props.location;
 
-    if (city.length == 0) {
+    if (city) {
       console.log("About city", city);
       console.log("About city main", city.main);
 

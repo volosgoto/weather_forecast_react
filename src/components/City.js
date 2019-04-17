@@ -8,12 +8,12 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 class City extends Component {
-  getCityInfo = () => {
-    console.log("this.props.match.params", this.props.match.params);
-    // console.log("City", this.props.location.cities[0].name);
-    // let city = this.props.location.cities[0].name;
-    // this.props.getCity(city);
-  };
+  // getCityInfo = () => {
+  //   console.log("this.props.match.params", this.props.match.params);
+  //   // console.log("City", this.props.location.cities[0].name);
+  //   // let city = this.props.location.cities[0].name;
+  //   // this.props.getCity(city);
+  // };
 
   render() {
     let [city] = this.props.location.cities;

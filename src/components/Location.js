@@ -13,7 +13,7 @@ class Location extends Component {
 
   render() {
     let cities = this.props.location.cities;
-    console.log('Location', this.props);
+    console.log('Location', cities);
     return (
       <div>
         <div className="row">
@@ -45,23 +45,38 @@ class Location extends Component {
           ) : null}
         </div>
         <div className="row mt-5">
-          {cities.map(city => {
-            return (
-              <div className="col text-left" key={city.id++}>
-                <img
-                  src={`http://openweathermap.org/img/w/${
-                    city.weather[0].icon
-                    }.png`}
-                  alt="weather_icon"
-                />
-                {<p>{city.weather[0].description} </p>}
-                <h2>{city.name}</h2>
-                {<p>Temp {tempConverter(city.main.temp)}</p>}
-                <p>Pressure {pressureConverter(city.main.pressure)} mmHg</p>
-                <p>Wind {city.wind.speed} meter/sec</p>
-              </div>
-            );
-          })}
+          {
+            cities.map(city => {
+              return (
+                <div className="col text-left" key={city.city.id}>
+                  <h2>{city.city.name}</h2>
+                  <img
+                    src={`http://openweathermap.org/img/w/${city.list[0].weather[0].icon}.png`}
+                    alt="weather_icon"
+                  />
+                  <p>{city.list[0].weather[0].description} </p>
+                  <h5>Temp {tempConverter(city.list[0].main.temp)} &#8451;</h5>
+                  <img src="http://openweathermap.org/img/w/01d.png" alt="" />
+                  <p>Day Temp {tempConverter(city.list[0].main.temp_max)} &#8451;
+
+                  </p>
+                  <img src="http://openweathermap.org/img/w/01n.png" alt="" />
+                  <p>Night {tempConverter(city.list[0].main.temp_min)} &#8451;
+
+                  </p>
+                  <p>Pressure {tempConverter(city.list[0].main.pressure)} </p>
+                  <p>Wind {(city.list[0].wind.speed)} </p>
+
+                  {/* 
+                  
+             
+                  
+                  <p>Pressure {pressureConverter(city.main.pressure)} mmHg</p>
+                  <p>Wind {city.wind.speed} meter/sec</p> */}
+                </div>
+              );
+            })
+          }
         </div>
       </div>
     );

@@ -14,7 +14,7 @@ class Dashboard extends Component {
     if (weather) {
       return (
         <div className="container">
-          <City />
+          {/* <City /> */}
           <Location weather={weather} />
         </div>
       );
@@ -25,7 +25,7 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = state => ({
-  weather: state.weather.weather
+  weather: state.weather
 });
 
 export default connect(

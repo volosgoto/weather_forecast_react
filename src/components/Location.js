@@ -13,6 +13,7 @@ class Location extends Component {
 
   render() {
     let cities = this.props.location.cities;
+    console.log('Location', this.props);
     return (
       <div>
         <div className="row">
@@ -50,12 +51,12 @@ class Location extends Component {
                 <img
                   src={`http://openweathermap.org/img/w/${
                     city.weather[0].icon
-                  }.png`}
+                    }.png`}
                   alt="weather_icon"
                 />
-                <p>{city.weather[0].description} </p>
+                {<p>{city.weather[0].description} </p>}
                 <h2>{city.name}</h2>
-                <p>Temp {tempConverter(city.main.temp)}</p>
+                {<p>Temp {tempConverter(city.main.temp)}</p>}
                 <p>Pressure {pressureConverter(city.main.pressure)} mmHg</p>
                 <p>Wind {city.wind.speed} meter/sec</p>
               </div>

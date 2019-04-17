@@ -24,13 +24,13 @@ class City extends Component {
             <h4 className="card-title">Weather today</h4>
             <div className="row">
               <div className="col">
-                <img
+                {/* <img
                   className="img-fluid"
                   src={`http://openweathermap.org/img/w/${
                     city.weather[0].icon
                   }.png`}
                   alt="weather_icon"
-                />
+                /> */}
               </div>
             </div>
             <div className="row">

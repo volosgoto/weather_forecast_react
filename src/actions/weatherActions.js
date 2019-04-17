@@ -1,12 +1,13 @@
 import { GET_WEATHER, SET_LOCATION } from "./types";
 import axios from "axios";
 
-const apiKey = "e3e797fbded50fc538e05975b37532a2";
+// const apiKey = "e3e797fbded50fc538e05975b37532a2";
+const apiKey = "5aaae38caa80db1a92ab821d250efed7";
 const defaultLocation = "kyiv";
 
 export const getWeather = () => async dispatch => {
   const res = await axios.get(
-    `http://api.openweathermap.org/data/2.5/weather?q=${defaultLocation}&APPID=${apiKey}`
+    `http://api.openweathermap.org/data/2.5/forecast?q=${defaultLocation}&APPID=${apiKey}`
   );
   // console.log('res', res);
   dispatch({
@@ -15,12 +16,3 @@ export const getWeather = () => async dispatch => {
   });
 };
 
-// export const setLocation = city => async dispatch => {
-//   const res = await axios.get(
-//     `http://api.openweathermap.org/data/2.5/weather?q=london&APPID=${apiKey}`
-//   );
-//   dispatch({
-//     type: SET_LOCATION,
-//     payload: res.data
-//   });
-// };

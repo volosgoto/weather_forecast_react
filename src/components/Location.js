@@ -13,7 +13,6 @@ class Location extends Component {
 
   render() {
     let cities = this.props.location.cities;
-    console.log("Location len", this.props.location.cities.length);
     return (
       <div>
         <div className="row">

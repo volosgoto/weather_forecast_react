@@ -1,7 +1,8 @@
 import { SET_LOCATION, GET_CITY } from "../actions/types";
 
 let initialState = {
-  cities: []
+  cities: [],
+  city: []
 };
 
 export default function(state = initialState, action) {

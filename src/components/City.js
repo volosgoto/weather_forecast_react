@@ -3,18 +3,25 @@ import { getCity } from "../actions/locationActions";
 import tempConverter from "../helpers/tempConverter";
 import pressureConverter from "../helpers/pressureConverter";
 import Spinner from "./Spinner";
+import { Link } from "react-router-dom";
 
 import { connect } from "react-redux";
 
 class City extends Component {
+  getCityInfo = () => {
+    console.log("this.props.match.params", this.props.match.params);
+    // console.log("City", this.props.location.cities[0].name);
+    // let city = this.props.location.cities[0].name;
+    // this.props.getCity(city);
+  };
+
   render() {
     let [city] = this.props.location.cities;
-
     if (city) {
       return (
         <div className="row mt-5">
           <div className="col-md-6 m-auto text-center">
-            <h4 class="card-title">Weather today</h4>
+            <h4 className="card-title">Weather today</h4>
             <div className="row">
               <div className="col">
                 <img
@@ -45,6 +52,13 @@ class City extends Component {
             <div className="col mt-1">
               <button className="btn btn-primary ml-1">5 days forecast</button>
               <button className="btn btn-primary ml-1">10 days forecast</button>
+              <Link
+                to={`/about/${this.props.location.cities[0].name}`}
+                onClick={this.getCityInfo}
+                className="btn btn-info ml-1"
+              >
+                Details
+              </Link>
             </div>
           </div>
         </div>

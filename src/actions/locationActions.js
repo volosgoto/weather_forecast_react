@@ -14,8 +14,11 @@ export const setLocation = city => async dispatch => {
 };
 
 export const getCity = city => async dispatch => {
+  const res = await axios.get(
+    `http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${apiKey}`
+  );
   dispatch({
     type: GET_CITY,
-    payload: city
+    payload: res.data
   });
 };

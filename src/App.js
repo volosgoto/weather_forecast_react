@@ -10,11 +10,6 @@ class App extends Component {
     return (
       <Router>
         <Switch>
-          {/* {
-            <div className="container-fluid">
-              <Dashboard />
-            </div>
-          } */}
           <Route exact path="/" component={Dashboard} />
           <Route exact path="/about" component={About} />
           <Route component={NotFound} />

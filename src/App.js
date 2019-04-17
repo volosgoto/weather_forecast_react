@@ -1,12 +1,25 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import About from "./components/About";
+import NotFound from "./components/NotFound";
+
 import Dashboard from "./components/Dashboard";
 
 class App extends Component {
   render() {
     return (
-      <div className="container-fluid">
-        <Dashboard />
-      </div>
+      <Router>
+        <Switch>
+          {/* {
+            <div className="container-fluid">
+              <Dashboard />
+            </div>
+          } */}
+          <Route exact path="/" component={Dashboard} />
+          <Route exact path="/about" component={About} />
+          <Route component={NotFound} />
+        </Switch>
+      </Router>
     );
   }
 }

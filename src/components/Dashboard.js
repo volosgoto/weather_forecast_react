@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import Location from "./Location";
 import City from "./City";
+import Spinner from "./Spinner";
 import { getWeather } from "../actions/weatherActions";
-import { setLocation } from "../actions/locationActions";
-
 import { connect } from "react-redux";
 
 class Dashboard extends Component {
@@ -20,17 +19,7 @@ class Dashboard extends Component {
         </div>
       );
     } else {
-      return (
-        <div className="container mt-5">
-          <div className="row mt-5">
-            <div className="col text-center mt-5">
-              <div className="spinner-border" role="status">
-                <span className="sr-only">Loading...</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      );
+      return <Spinner />;
     }
   }
 }

@@ -8,13 +8,12 @@ import { connect } from "react-redux";
 class Location extends Component {
   setLocationFromInput = () => {
     this.props.setLocation(this.locationInput.value);
-    // console.log(this.locationInput.value);
     return (this.locationInput.value = "");
   };
 
   render() {
     let cities = this.props.location.cities;
-    // console.log("cities", cities);
+    console.log("Location len", this.props.location.cities.length);
     return (
       <div>
         <div className="row">
@@ -39,10 +38,13 @@ class Location extends Component {
           </div>
         </div>
         <div className="row mt-5">
-          <div className="col text-center">Recent Places</div>
+          {this.props.location.cities.length > 0 ? (
+            <div className="col text-center">
+              <h3>Recent Places</h3>
+            </div>
+          ) : null}
         </div>
         <div className="row mt-5">
-          {/* {console.log("cities", cities)} */}
           {cities.map(city => {
             return (
               <div className="col text-left" key={city.id++}>

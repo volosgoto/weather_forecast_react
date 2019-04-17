@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { getCity } from "../actions/locationActions";
+import tempConverter from "../helpers/tempConverter";
+import pressureConverter from "../helpers/pressureConverter";
+import Spinner from "./Spinner";
 
 import { connect } from "react-redux";
 
@@ -11,21 +14,33 @@ class City extends Component {
       return (
         <div className="row mt-5">
           <div className="col-md-6 m-auto text-center">
-            <h1>Weather today</h1>
-            <h2>{city.name}</h2>
-            {/* <img
-              src={`http://openweathermap.org/img/w/${
-                weather.weather[0].icon
-              }.png`}
-              alt="weather_icon"
-            /> */}
-            <h3>{city.main.temp}</h3>
+            <h4 class="card-title">Weather today</h4>
+            <div className="row">
+              <div className="col">
+                <img
+                  className="img-fluid"
+                  src={`http://openweathermap.org/img/w/${
+                    city.weather[0].icon
+                  }.png`}
+                  alt="weather_icon"
+                />
+              </div>
+            </div>
+            <div className="row">
+              <div className="col">
+                <h2>{city.name}</h2>
+              </div>
+            </div>
 
-            <p>Day: {city.main.temp_max} </p>
-            <p>Night: {city.main.temp_min}</p>
-
-            <p>Pressure {city.main.pressure}</p>
-            <p>Wind {city.wind.deg} meter/sec</p>
+            <div className="row">
+              <div className="col">{tempConverter(city.main.temp)}</div>
+              <div className="col">{tempConverter(city.main.temp_min)}</div>
+              <div className="col">{tempConverter(city.main.temp_max)}</div>
+              <div className="col">
+                Pressure {pressureConverter(city.main.pressure)}
+              </div>
+              <div className="col">Wind {city.wind.deg} meter/sec</div>
+            </div>
 
             <div className="col mt-1">
               <button className="btn btn-primary ml-1">5 days forecast</button>
@@ -35,7 +50,7 @@ class City extends Component {
         </div>
       );
     } else {
-      return false;
+      return <Spinner />;
     }
   }
 }

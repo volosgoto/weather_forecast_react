@@ -8,17 +8,18 @@ import { connect } from "react-redux";
 class Location extends Component {
   setLocationFromInput = () => {
     this.props.setLocation(this.locationInput.value);
-    console.log(this.locationInput.value);
+    // console.log(this.locationInput.value);
     return (this.locationInput.value = "");
   };
 
   render() {
     let cities = this.props.location.cities;
-    console.log("cities", cities);
+    // console.log("cities", cities);
     return (
       <div>
         <div className="row">
           <div className="col-md-6 m-auto text-center">
+            <p className="mt-5">Enter City</p>
             <input
               ref={input => {
                 this.locationInput = input;
@@ -30,10 +31,10 @@ class Location extends Component {
               placeholder=""
             />
             <button
-              className="btn btn-success"
+              className="btn btn-light"
               onClick={this.setLocationFromInput}
             >
-              Change Location
+              <i className="fas fa-search" />
             </button>
           </div>
         </div>

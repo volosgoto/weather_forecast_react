@@ -1,4 +1,4 @@
-import { SET_LOCATION } from "../actions/types";
+import { SET_LOCATION, GET_CITY } from "../actions/types";
 
 let initialState = {
   cities: []
@@ -10,6 +10,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         cities: [action.payload, ...state.cities]
+      };
+    case GET_CITY:
+      return {
+        ...state,
+        city: action.payload
       };
     default:
       return state;

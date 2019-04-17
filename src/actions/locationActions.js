@@ -1,4 +1,4 @@
-import { SET_LOCATION } from "./types";
+import { SET_LOCATION, GET_CITY } from "./types";
 import axios from "axios";
 
 const apiKey = "e3e797fbded50fc538e05975b37532a2";
@@ -10,5 +10,12 @@ export const setLocation = city => async dispatch => {
   dispatch({
     type: SET_LOCATION,
     payload: res.data
+  });
+};
+
+export const getCity = city => async dispatch => {
+  dispatch({
+    type: GET_CITY,
+    payload: city
   });
 };

@@ -13,7 +13,7 @@ class Location extends Component {
 
   render() {
     let cities = this.props.location.cities;
-    console.log('Location', cities);
+    console.log("Location", cities);
     return (
       <div>
         <div className="row">
@@ -45,38 +45,60 @@ class Location extends Component {
           ) : null}
         </div>
         <div className="row mt-5">
-          {
-            cities.map(city => {
-              return (
-                <div className="col text-left" key={city.city.id}>
-                  <h2>{city.city.name}</h2>
-                  <img
-                    src={`http://openweathermap.org/img/w/${city.list[0].weather[0].icon}.png`}
-                    alt="weather_icon"
-                  />
-                  <p>{city.list[0].weather[0].description} </p>
-                  <h5>Temp {tempConverter(city.list[0].main.temp)} &#8451;</h5>
-                  <img src="http://openweathermap.org/img/w/01d.png" alt="" />
-                  <p>Day Temp {tempConverter(city.list[0].main.temp_max)} &#8451;
-
-                  </p>
-                  <img src="http://openweathermap.org/img/w/01n.png" alt="" />
-                  <p>Night {tempConverter(city.list[0].main.temp_min)} &#8451;
-
-                  </p>
-                  <p>Pressure {tempConverter(city.list[0].main.pressure)} </p>
-                  <p>Wind {(city.list[0].wind.speed)} </p>
-
-                  {/* 
-                  
-             
-                  
-                  <p>Pressure {pressureConverter(city.main.pressure)} mmHg</p>
-                  <p>Wind {city.wind.speed} meter/sec</p> */}
+          {cities.map(city => {
+            return (
+              <div className="col text-left" key={city.city.id}>
+                <div className="row">
+                  <div className="col text-left">
+                    <h2>{city.city.name}</h2>
+                    <img
+                      src={`http://openweathermap.org/img/w/${
+                        city.list[0].weather[0].icon
+                      }.png`}
+                      alt="weather_icon"
+                    />
+                  </div>
                 </div>
-              );
-            })
-          }
+                <div className="row">
+                  <div className="col text-left">
+                    {city.list[0].weather[0].description}
+                  </div>
+                </div>
+
+                <div className="row">
+                  <div className="col mt-2 text-left">
+                    <h3>{tempConverter(city.list[0].main.temp)} &#8451;</h3>
+                  </div>
+                </div>
+
+                <div className="row">
+                  <div className="col">
+                    {" "}
+                    Day {tempConverter(city.list[0].main.temp_max)} &#8451;
+                  </div>
+                  <div className="col" />
+                </div>
+
+                <div className="row">
+                  <div className="col">
+                    Night {tempConverter(city.list[0].main.temp_min)} &#8451;
+                  </div>
+                </div>
+
+                <div className="row">
+                  <div className="col text-left">
+                    Pressure {tempConverter(city.list[0].main.pressure)} mmHg
+                  </div>
+                </div>
+
+                <div className="row">
+                  <div className="col text-left">
+                    Wind {city.list[0].wind.speed} m/sec
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     );

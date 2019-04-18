@@ -1,22 +1,32 @@
-import React from "react";
+import React, { Component } from "react";
 
-export default function Alert() {
-  return (
-    <div
-      class="alert alert-danger bg-warning alert-dismissible fade show"
-      role="alert"
-    >
-      <strong>Limit 5 cities input</strong>
-      <button
-        type="button"
-        class="close"
-        data-dismiss="alert"
-        aria-label="Close"
-      >
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-  );
+export default class Alert extends Component {
+
+  state = {
+    showAlert: true
+  };
+
+  render() {
+    const { showAlert } = this.state;
+    return (
+      <div>
+        {showAlert && (
+          <div className="alert alert-warning alert-dismissible">
+            <button
+              onClick={() =>
+                this.setState({
+                  showAlert: !showAlert
+                })
+              }
+              type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Warning!</strong> Limit 5 cities input!
+        </div>
+        )}
+      </div>
+
+
+    );
+  }
 }
 
 // $(".alert").alert();

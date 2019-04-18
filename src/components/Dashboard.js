@@ -23,7 +23,7 @@ class Dashboard extends Component {
             <City />
             <Location weather={weather} />
           </div>
-          <Footer/>
+          <Footer />
         </div>
 
       );

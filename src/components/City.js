@@ -23,7 +23,6 @@ class City extends Component {
       let { icon } = this.props.location.list[0].weather[0];
       let { description } = this.props.location.list[0].weather[0];
       let { wind } = this.props.location.list[0];
-      console.log("City name", city.name);
       return (
         <div className="row mt-3">
           <div className="col-md-8 m-auto text-center">
@@ -43,7 +42,7 @@ class City extends Component {
               </div>
             </div>
             <div className="row ">
-              <div className="col mt-3 mb-2">{tempConverter(temp)}&#8451;</div>
+              <div className="col mt-3 mb-2">{tempConverter(temp)} &#8451;</div>
               <div className="col mt-3 mb-2">Wind {wind.speed} m/sec</div>
               <div className="col mt-3 mb-2">
                 Pressure {pressureConverter(pressure)} mmHg

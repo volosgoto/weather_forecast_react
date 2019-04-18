@@ -11,68 +11,66 @@ class About extends Component {
   componentDidMount() {
     const { city } = this.props.match.params;
     this.props.getCity(city);
-    // console.log("componentDidMount", city);
   }
 
   render() {
-    let { city } = this.props.location;
-
-    if (city) {
-      console.log("About city", city);
-      console.log("About city main", city.main);
-
+    if (this.props.location.city) {
+      console.log("About", this.props.location);
+      let { name } = this.props.location.city;
+      let { temp } = this.props.location.list[0].main;
+      let { temp_min } = this.props.location.list[0].main;
+      let { temp_max } = this.props.location.list[0].main;
+      let { pressure } = this.props.location.list[0].main;
+      let { icon } = this.props.location.list[0].weather[0];
+      let { description } = this.props.location.list[0].weather[0];
+      let { wind } = this.props.location.list[0];
       return (
-        <div className="row mt-5">
-          <div className="col-md-6 m-auto text-center">
-            <h4 className="card-title">Detail Weather</h4>
-            <div className="row">
-              <div className="col">
-                {/* <img
-                  className="img-fluid"
-                  src={`http://openweathermap.org/img/w/${
-                    city.weather[0].icon
-                  }.png`}
-                  alt="weather_icon"
-                /> */}
-              </div>
-            </div>
-            <div className="row">
-              <div className="col">
-                <h2>{city.name}</h2>
-                <h2>{city.cod}</h2>
-                <h2>{city.id}</h2>
-                {/* <h2>{city.wind.speed}</h2> */}
-              </div>
-            </div>
-
-            <div className="row">
-              {/* <div className="col">{tempConverter(city.main.temp)}</div> */}
-              {/* <div className="col">{tempConverter(city.main.temp_min)}</div> */}
-              {/* <div className="col">{tempConverter(city.main.temp_max)}</div> */}
-              <div className="col">
-                {/* Pressure {pressureConverter(city.main.pressure)} */}
-              </div>
-              {/* <div className="col">Wind {city.wind.speed} meter/sec</div> */}
-            </div>
-
-            <div className="col mt-1">
-              <button className="btn btn-primary ml-1">5 days forecast</button>
-              <button className="btn btn-primary ml-1">10 days forecast</button>
-              <div className="ml-5 mb-5 pb-5">
-                <Link to="/" className="btn btn-success">
-                  Back Home
-                </Link>
-              </div>
+        <div className="row">
+          <div className="row">
+            <div className="col text-left">
+              <h2>{name}</h2>
+              <img
+                src={`http://openweathermap.org/img/w/${icon}.png`}
+                alt="weather_icon"
+              />
             </div>
           </div>
+          <div className="row">
+            <div className="col text-left">{description}</div>
+          </div>
+          <div className="row">
+            <div className="col mt-2 text-left">
+              <h3>{tempConverter(temp)} &#8451;</h3>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col">Day {tempConverter(temp_max)} &#8451;</div>
+            <div className="col" />
+          </div>
+          <div className="row">
+            <div className="col">Night {tempConverter(temp_min)} &#8451;</div>
+          </div>
+          <div className="row">
+            <div className="col text-left">
+              Pressure {tempConverter(pressure)} mmHg
+            </div>
+          </div>
+          <div className="row">
+            <div className="col text-left">Wind {wind.speed} m/sec</div>
+          </div>
+          <Link to="/" className="btn btn-success">
+            Back Home
+          </Link>
         </div>
       );
-    } else return false;
+    } else {
+      return <Spinner />;
+    }
   }
 }
 
 const mapStateToProps = state => ({
-  location: state.location
+  location: state.location.city
 });
 
 export default connect(

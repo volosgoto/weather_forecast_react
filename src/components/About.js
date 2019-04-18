@@ -17,20 +17,26 @@ class About extends Component {
     if (this.props.location.city) {
       console.log("About", this.props.location);
       let { name } = this.props.location.city;
+      let { country } = this.props.location.city;
+      let { humidity } = this.props.location.list[0].main;
+      let { dt_txt } = this.props.location.list[0];
       let { temp } = this.props.location.list[0].main;
-      let { temp_min } = this.props.location.list[0].main;
-      let { temp_max } = this.props.location.list[0].main;
       let { pressure } = this.props.location.list[0].main;
       let { icon } = this.props.location.list[0].weather[0];
       let { description } = this.props.location.list[0].weather[0];
       let { wind } = this.props.location.list[0];
+
+      function date(dt_txt) {}
       return (
         <div className="row mt-3">
           <div className="col-md-8 m-auto text-center">
             <h4 className="card-title">Weather today</h4>
             <div className="row">
               <div className="col">
-                <h2>{name}</h2>
+                <h2>
+                  {name}, {country}
+                </h2>
+                <p>{dt_txt}</p>
               </div>
             </div>
             <div className="row">
@@ -43,8 +49,11 @@ class About extends Component {
               </div>
             </div>
             <div className="row ">
-              <div className="col mt-3 mb-2">{tempConverter(temp)} &#8451;</div>
+              <div className="col mt-3 mb-2">
+                <p>{tempConverter(temp)} &#8451;</p>
+              </div>
               <div className="col mt-3 mb-2">Wind {wind.speed} m/sec</div>
+              <div className="col mt-3 mb-2">Humidity {humidity} %</div>
               <div className="col mt-3 mb-2">
                 Pressure {pressureConverter(pressure)} mmHg
               </div>

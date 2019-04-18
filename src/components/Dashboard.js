@@ -14,7 +14,7 @@ class Dashboard extends Component {
     if (weather) {
       return (
         <div className="container">
-          {/* <City /> */}
+          <City />
           <Location weather={weather} />
         </div>
       );

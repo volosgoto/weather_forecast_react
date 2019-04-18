@@ -13,7 +13,7 @@ class Location extends Component {
 
   render() {
     let cities = this.props.location.cities;
-    console.log("Location", cities);
+    // console.log("Location", cities);
     return (
       <div>
         <div className="row">
@@ -40,7 +40,7 @@ class Location extends Component {
         <div className="row mt-5">
           {this.props.location.cities.length > 0 ? (
             <div className="col text-center">
-              <h3>Recent Places</h3>
+              <h4>Recent Places</h4>
             </div>
           ) : null}
         </div>

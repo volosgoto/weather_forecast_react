@@ -8,52 +8,53 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 class City extends Component {
-  // getCityInfo = () => {
-  //   console.log("this.props.match.params", this.props.match.params);
-  //   // console.log("City", this.props.location.cities[0].name);
-  //   // let city = this.props.location.cities[0].name;
-  //   // this.props.getCity(city);
-  // };
+  getCityInfo = () => {
+    // console.log("this.props.match.params", this.props.match.params);
+    // console.log("City", this.props.location.cities[0].name);
+    let city = this.props.location.city.name;
+    this.props.getCity(city);
+  };
 
   render() {
-    let [city] = this.props.location.cities;
-    if (city) {
+    if (this.props.location) {
+      let { city } = this.props.location;
+      let { temp } = this.props.location.list[0].main;
+      let { pressure } = this.props.location.list[0].main;
+      let { icon } = this.props.location.list[0].weather[0];
+      let { description } = this.props.location.list[0].weather[0];
+      let { wind } = this.props.location.list[0];
+      console.log("City name", city.name);
       return (
-        <div className="row mt-5">
-          <div className="col-md-6 m-auto text-center">
+        <div className="row mt-3">
+          <div className="col-md-8 m-auto text-center">
             <h4 className="card-title">Weather today</h4>
-            <div className="row">
-              <div className="col">
-                {/* <img
-                  className="img-fluid"
-                  src={`http://openweathermap.org/img/w/${
-                    city.weather[0].icon
-                  }.png`}
-                  alt="weather_icon"
-                /> */}
-              </div>
-            </div>
             <div className="row">
               <div className="col">
                 <h2>{city.name}</h2>
               </div>
             </div>
-
             <div className="row">
-              <div className="col">{tempConverter(city.main.temp)}</div>
-              <div className="col">{tempConverter(city.main.temp_min)}</div>
-              <div className="col">{tempConverter(city.main.temp_max)}</div>
               <div className="col">
-                Pressure {pressureConverter(city.main.pressure)}
+                <img
+                  src={`http://openweathermap.org/img/w/${icon}.png`}
+                  alt="weather_icon"
+                />
+                <div className="col">{description}</div>
               </div>
-              <div className="col">Wind {city.wind.deg} meter/sec</div>
+            </div>
+            <div className="row ">
+              <div className="col mt-3 mb-2">{tempConverter(temp)}&#8451;</div>
+              <div className="col mt-3 mb-2">Wind {wind.speed} m/sec</div>
+              <div className="col mt-3 mb-2">
+                Pressure {pressureConverter(pressure)} mmHg
+              </div>
             </div>
 
             <div className="col mt-1">
               <button className="btn btn-primary ml-1">5 days forecast</button>
               <button className="btn btn-primary ml-1">10 days forecast</button>
               <Link
-                to={`/about/${this.props.location.cities[0].name}`}
+                to={`/about/${city.name}`}
                 onClick={this.getCityInfo}
                 className="btn btn-info ml-1"
               >
@@ -70,7 +71,7 @@ class City extends Component {
 }
 
 const mapStateToProps = state => ({
-  location: state.location
+  location: state.location.cities[0]
 });
 
 export default connect(

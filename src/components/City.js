@@ -40,7 +40,7 @@ class City extends Component {
               </div>
             </div>
             <div className="row ">
-              <div className="col mt-3 mb-2">{tempConverter(temp)} &#8451;</div>
+              <div className="col mt-3 mb-2"><h3>{tempConverter(temp)} &#8451;</h3></div>
               <div className="col mt-3 mb-2">Wind {wind.speed} m/sec</div>
               <div className="col mt-3 mb-2">
                 Pressure {pressureConverter(pressure)} mmHg

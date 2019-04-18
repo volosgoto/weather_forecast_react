@@ -36,7 +36,7 @@ class About extends Component {
                 <h2>
                   {name}, {country}
                 </h2>
-                <p>{dt_txt}</p>
+                <p>Current weather {dt_txt}</p>
               </div>
             </div>
             <div className="row">
@@ -61,7 +61,7 @@ class About extends Component {
 
             <div className="col mt-5">
               <Link to="/" className="btn btn-info">
-                Back Home
+                <i className="fa fa-home" /> Back Home
               </Link>
             </div>
           </div>

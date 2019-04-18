@@ -2,7 +2,10 @@ import React from "react";
 
 export default function Alert() {
   return (
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <div
+      class="alert alert-danger bg-warning alert-dismissible fade show"
+      role="alert"
+    >
       <strong>Limit 5 cities input</strong>
       <button
         type="button"

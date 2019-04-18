@@ -47,7 +47,6 @@ class Location extends Component {
         <div className="row mt-5">
           {cities.map(city => {
             this.getCityInfo = () => {
-              // let currentCity = city.city.name;
               this.props.getCity(city.city.name);
             };
 
@@ -55,7 +54,7 @@ class Location extends Component {
               <Link
                 to={`/about/${city.city.name}`}
                 onClick={this.getCityInfo}
-                className="btn btn-info ml-1"
+                className="btn btn-info ml-1 mb-1"
               >
                 <div className="col text-left" key={city.city.id}>
                   <div className="row">

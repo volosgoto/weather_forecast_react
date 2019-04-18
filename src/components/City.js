@@ -9,8 +9,6 @@ import { connect } from "react-redux";
 
 class City extends Component {
   getCityInfo = () => {
-    // console.log("this.props.match.params", this.props.match.params);
-    // console.log("City", this.props.location.cities[0].name);
     let city = this.props.location.city.name;
     this.props.getCity(city);
   };

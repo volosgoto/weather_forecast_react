@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { setLocation } from "../actions/locationActions";
-import pressureConverter from "../helpers/pressureConverter";
+import { setLocation, getCity } from "../actions/locationActions";
 import tempConverter from "../helpers/tempConverter";
+import { Link } from "react-router-dom";
 
 import { connect } from "react-redux";
 
@@ -46,57 +46,68 @@ class Location extends Component {
         </div>
         <div className="row mt-5">
           {cities.map(city => {
+            this.getCityInfo = () => {
+              let currentCity = city.city.name;
+              this.props.getCity(currentCity);
+            };
+
             return (
-              <div className="col text-left" key={city.city.id}>
-                <div className="row">
-                  <div className="col text-left">
-                    <h2>{city.city.name}</h2>
-                    <img
-                      src={`http://openweathermap.org/img/w/${
-                        city.list[0].weather[0].icon
-                      }.png`}
-                      alt="weather_icon"
-                    />
+              <Link
+                to={`/about/${city.name}`}
+                onClick={this.getCityInfo}
+                className="btn btn-info ml-1"
+              >
+                <div className="col text-left" key={city.city.id}>
+                  <div className="row">
+                    <div className="col text-left">
+                      <h2>{city.city.name}</h2>
+                      <img
+                        src={`http://openweathermap.org/img/w/${
+                          city.list[0].weather[0].icon
+                        }.png`}
+                        alt="weather_icon"
+                      />
+                    </div>
                   </div>
-                </div>
-                <div className="row">
-                  <div className="col text-left">
-                    {city.list[0].weather[0].description}
+                  <div className="row">
+                    <div className="col text-left">
+                      {city.list[0].weather[0].description}
+                    </div>
                   </div>
-                </div>
 
-                <div className="row">
-                  <div className="col mt-2 text-left">
-                    <h3>{tempConverter(city.list[0].main.temp)} &#8451;</h3>
+                  <div className="row">
+                    <div className="col mt-2 text-left">
+                      <h3>{tempConverter(city.list[0].main.temp)} &#8451;</h3>
+                    </div>
                   </div>
-                </div>
 
-                <div className="row">
-                  <div className="col">
-                    {" "}
-                    Day {tempConverter(city.list[0].main.temp_max)} &#8451;
+                  <div className="row">
+                    <div className="col">
+                      {" "}
+                      Day {tempConverter(city.list[0].main.temp_max)} &#8451;
+                    </div>
+                    <div className="col" />
                   </div>
-                  <div className="col" />
-                </div>
 
-                <div className="row">
-                  <div className="col">
-                    Night {tempConverter(city.list[0].main.temp_min)} &#8451;
+                  <div className="row">
+                    <div className="col">
+                      Night {tempConverter(city.list[0].main.temp_min)} &#8451;
+                    </div>
                   </div>
-                </div>
 
-                <div className="row">
-                  <div className="col text-left">
-                    Pressure {tempConverter(city.list[0].main.pressure)} mmHg
+                  <div className="row">
+                    <div className="col text-left">
+                      Pressure {tempConverter(city.list[0].main.pressure)} mmHg
+                    </div>
                   </div>
-                </div>
 
-                <div className="row">
-                  <div className="col text-left">
-                    Wind {city.list[0].wind.speed} m/sec
+                  <div className="row">
+                    <div className="col text-left">
+                      Wind {city.list[0].wind.speed} m/sec
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             );
           })}
         </div>
@@ -111,5 +122,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { setLocation }
+  { setLocation, getCity }
 )(Location);

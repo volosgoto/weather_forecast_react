@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import Location from "./Location";
 import City from "./City";
 import Spinner from "./Spinner";
+import Navbar from "./layout/Navbar";
+import Footer from "./layout/Footer";
+
 import { getWeather } from "../actions/weatherActions";
 import { connect } from "react-redux";
 
@@ -10,13 +13,19 @@ class Dashboard extends Component {
     this.props.getWeather();
   }
   render() {
+
     let { weather } = this.props;
     if (weather) {
       return (
-        <div className="container">
-          <City />
-          <Location weather={weather} />
+        <div>
+          <Navbar />
+          <div className="container-fluid">
+            <City />
+            <Location weather={weather} />
+          </div>
+          <Footer/>
         </div>
+
       );
     } else {
       return <Spinner />;

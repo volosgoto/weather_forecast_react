@@ -25,42 +25,37 @@ class About extends Component {
       let { description } = this.props.location.list[0].weather[0];
       let { wind } = this.props.location.list[0];
       return (
-        <div className="row">
-          <div className="row">
-            <div className="col text-left">
-              <h2>{name}</h2>
-              <img
-                src={`http://openweathermap.org/img/w/${icon}.png`}
-                alt="weather_icon"
-              />
+        <div className="row mt-3">
+          <div className="col-md-8 m-auto text-center">
+            <h4 className="card-title">Weather today</h4>
+            <div className="row">
+              <div className="col">
+                <h2>{name}</h2>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col">
+                <img
+                  src={`http://openweathermap.org/img/w/${icon}.png`}
+                  alt="weather_icon"
+                />
+                <div className="col">{description}</div>
+              </div>
+            </div>
+            <div className="row ">
+              <div className="col mt-3 mb-2">{tempConverter(temp)} &#8451;</div>
+              <div className="col mt-3 mb-2">Wind {wind.speed} m/sec</div>
+              <div className="col mt-3 mb-2">
+                Pressure {pressureConverter(pressure)} mmHg
+              </div>
+            </div>
+
+            <div className="col mt-5">
+              <Link to="/" className="btn btn-info">
+                Back Home
+              </Link>
             </div>
           </div>
-          <div className="row">
-            <div className="col text-left">{description}</div>
-          </div>
-          <div className="row">
-            <div className="col mt-2 text-left">
-              <h3>{tempConverter(temp)} &#8451;</h3>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col">Day {tempConverter(temp_max)} &#8451;</div>
-            <div className="col" />
-          </div>
-          <div className="row">
-            <div className="col">Night {tempConverter(temp_min)} &#8451;</div>
-          </div>
-          <div className="row">
-            <div className="col text-left">
-              Pressure {tempConverter(pressure)} mmHg
-            </div>
-          </div>
-          <div className="row">
-            <div className="col text-left">Wind {wind.speed} m/sec</div>
-          </div>
-          <Link to="/" className="btn btn-success">
-            Back Home
-          </Link>
         </div>
       );
     } else {

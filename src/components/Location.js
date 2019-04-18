@@ -49,7 +49,6 @@ class Location extends Component {
             this.getCityInfo = () => {
               this.props.getCity(city.city.name);
             };
-
             return (
               <Link
                 key={city.city.name}

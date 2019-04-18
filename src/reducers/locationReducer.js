@@ -10,7 +10,11 @@ export default function(state = initialState, action) {
     case SET_LOCATION:
       return {
         ...state,
-        cities: [action.payload, ...state.cities]
+        cities: (() => {
+          return [action.payload, ...state.cities].length < 6
+            ? [action.payload, ...state.cities]
+            : state.cities;
+        })()
       };
     case GET_CITY:
       return {

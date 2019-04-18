@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { setLocation, getCity } from "../actions/locationActions";
 import tempConverter from "../helpers/tempConverter";
+import Alert from "./Alert";
 import { Link } from "react-router-dom";
 
 import { connect } from "react-redux";
@@ -19,6 +20,11 @@ class Location extends Component {
         <div className="row">
           <div className="col-md-6 m-auto text-center">
             <p className="mt-5">Enter City</p>
+            {/* Alert */}
+            <div className="row">
+              <div className="col">{cities.length > 4 && <Alert />}</div>
+            </div>
+            {/* Alert */}
             <input
               ref={input => {
                 this.locationInput = input;

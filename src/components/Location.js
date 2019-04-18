@@ -47,13 +47,13 @@ class Location extends Component {
         <div className="row mt-5">
           {cities.map(city => {
             this.getCityInfo = () => {
-              let currentCity = city.city.name;
-              this.props.getCity(currentCity);
+              // let currentCity = city.city.name;
+              this.props.getCity(city.city.name);
             };
 
             return (
               <Link
-                to={`/about/${city.name}`}
+                to={`/about/${city.city.name}`}
                 onClick={this.getCityInfo}
                 className="btn btn-info ml-1"
               >

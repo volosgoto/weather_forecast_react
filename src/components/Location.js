@@ -52,11 +52,12 @@ class Location extends Component {
 
             return (
               <Link
+                key={city.city.name}
                 to={`/about/${city.city.name}`}
                 onClick={this.getCityInfo}
                 className="btn btn-info ml-1 mb-1"
               >
-                <div className="col text-left" key={city.city.id}>
+                <div className="col text-left" key={city.city.name}>
                   <div className="row">
                     <div className="col text-left">
                       <h2>{city.city.name}</h2>

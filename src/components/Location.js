@@ -1,6 +1,11 @@
 import React, { Component } from "react";
+import ReactDOM from "react-dom";
 
-import { setLocation, getCity } from "../actions/locationActions";
+import {
+  setLocation,
+  getCity,
+  disableCityInput
+} from "../actions/locationActions";
 import tempConverter from "../helpers/tempConverter";
 import Alert from "./Alert";
 import { Link } from "react-router-dom";
@@ -8,24 +13,29 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 class Location extends Component {
-
   setLocationFromInput = () => {
     this.props.setLocation(this.locationInput.value);
     return (this.locationInput.value = "");
   };
 
-
+  componentDidUpdate() {}
 
   render() {
     let cities = this.props.location.cities;
+
+    console.log(
+      "this.props.location.disableInput",
+      this.props.location.disableInput
+    );
+
     let disableInput = false;
     // let elementInput = ReactDOM.findDOMNode(this.locationInput);
-    let elementInput = document.getElementById('inp');
 
     // !!!!!!!!!!!Disable input
+
     if (cities.length > 1) {
-      elementInput.style.display = "none"
-      disableInput = true;
+      let elementInput = ReactDOM.findDOMNode(this.locationInput);
+      elementInput.setAttribute("disabled", true);
     }
 
     // console.log("Location", cities);
@@ -40,7 +50,6 @@ class Location extends Component {
             </div>
             {/* Alert */}
             <input
-              id='inp'
               ref={input => {
                 this.locationInput = input;
               }}
@@ -49,7 +58,6 @@ class Location extends Component {
               name=""
               id=""
               placeholder=""
-
             />
             <button
               className="btn btn-light"
@@ -73,7 +81,7 @@ class Location extends Component {
                 this.props.getCity(city.city.name);
               };
               return (
-                <div className="col mb-2 text-left">
+                <div key={city.city.name} className="col mb-2 text-left">
                   <Link
                     key={city.city.name}
                     to={`/about/${city.city.name}`}
@@ -87,7 +95,7 @@ class Location extends Component {
                           <img
                             src={`http://openweathermap.org/img/w/${
                               city.list[0].weather[0].icon
-                              }.png`}
+                            }.png`}
                             alt="weather_icon"
                           />
                         </div>
@@ -100,20 +108,18 @@ class Location extends Component {
 
                       <div className="row">
                         <div className="col mt-2">
-                          <h3>{tempConverter(city.list[0].main.temp)} &#8451;</h3>
+                          <h3>
+                            {tempConverter(city.list[0].main.temp)} &#8451;
+                          </h3>
                         </div>
                       </div>
-
                     </div>
                   </Link>
                 </div>
-
               );
             })}
           </div>
-
         </div>
-
       </div>
     );
   }
@@ -125,5 +131,5 @@ let mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { setLocation, getCity }
+  { setLocation, getCity, disableCityInput }
 )(Location);

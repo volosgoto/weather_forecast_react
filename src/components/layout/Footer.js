@@ -1,18 +1,16 @@
-import React from 'react'
+import React from "react";
 
 export default function Footer() {
   return (
     <footer>
-      <nav class="navbar bg-dark navbar-dark d-flex justify-content-center fixed-bottom">
-        <ul class="navbar-nav">
-          <li class="nav-item">
+      <nav className="navbar bg-dark navbar-dark d-flex justify-content-center fixed-bottom">
+        <ul className="navbar-nav">
+          <li className="nav-item">
             {/* Weather forecast designed for Tanya Melnyk */}
             Weather forecast designed
           </li>
         </ul>
       </nav>
     </footer>
-
-
-  )
+  );
 }

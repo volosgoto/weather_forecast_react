@@ -1,11 +1,12 @@
-import { SET_LOCATION, GET_CITY } from "../actions/types";
+import { SET_LOCATION, GET_CITY, DISABLE_CITY_INPUT } from "../actions/types";
 
 let initialState = {
   cities: [],
-  city: []
+  city: [],
+  disableInput: ""
 };
 
-export default function (state = initialState, action) {
+export default function(state = initialState, action) {
   switch (action.type) {
     case SET_LOCATION:
       return {
@@ -20,6 +21,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         city: action.payload
+      };
+    case DISABLE_CITY_INPUT:
+      return {
+        ...state,
+        disableInput: action.payload
       };
     default:
       return state;

@@ -1,4 +1,4 @@
-import { SET_LOCATION, GET_CITY } from "./types";
+import { SET_LOCATION, GET_CITY, DISABLE_CITY_INPUT } from "./types";
 import axios from "axios";
 
 // const apiKey = "e3e797fbded50fc538e05975b37532a2";
@@ -22,4 +22,11 @@ export const getCity = city => async dispatch => {
     type: GET_CITY,
     payload: res.data
   });
+};
+
+export const disableCityInput = () => {
+  return {
+    type: DISABLE_CITY_INPUT,
+    payload: true
+  };
 };

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 import { setLocation, getCity } from "../actions/locationActions";
 import tempConverter from "../helpers/tempConverter";
 import Alert from "./Alert";
@@ -7,13 +8,26 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 class Location extends Component {
+
   setLocationFromInput = () => {
     this.props.setLocation(this.locationInput.value);
     return (this.locationInput.value = "");
   };
 
+
+
   render() {
     let cities = this.props.location.cities;
+    let disableInput = false;
+    // let elementInput = ReactDOM.findDOMNode(this.locationInput);
+    let elementInput = document.getElementById('inp');
+
+    // !!!!!!!!!!!Disable input
+    if (cities.length > 1) {
+      elementInput.style.display = "none"
+      disableInput = true;
+    }
+
     // console.log("Location", cities);
     return (
       <div>
@@ -22,10 +36,11 @@ class Location extends Component {
             <p className="mt-5">Enter City</p>
             {/* Alert */}
             <div className="row">
-              <div className="col">{cities.length > 4 && <Alert />}</div>
+              <div className="col">{disableInput && <Alert />}</div>
             </div>
             {/* Alert */}
             <input
+              id='inp'
               ref={input => {
                 this.locationInput = input;
               }}
@@ -34,6 +49,7 @@ class Location extends Component {
               name=""
               id=""
               placeholder=""
+
             />
             <button
               className="btn btn-light"
@@ -103,7 +119,7 @@ class Location extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+let mapStateToProps = state => ({
   location: state.location
 });
 

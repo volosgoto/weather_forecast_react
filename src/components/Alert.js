@@ -15,10 +15,12 @@ export default class Alert extends Component {
             <button
               onClick={() =>
                 this.setState({
-                  showAlert: !showAlert
+                  showAlert: false
                 })
               }
-              type="button" class="close" data-dismiss="alert">&times;</button>
+              type="button" class="close" data-dismiss="alert">
+              &times;
+            </button>
             <strong>Warning!</strong> Limit 5 cities input!
         </div>
         )}

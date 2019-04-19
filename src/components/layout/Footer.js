@@ -6,7 +6,8 @@ export default function Footer() {
       <nav class="navbar bg-dark navbar-dark d-flex justify-content-center fixed-bottom">
         <ul class="navbar-nav">
           <li class="nav-item">
-            Weather forecast designed for Tanya Melnyk
+            {/* Weather forecast designed for Tanya Melnyk */}
+            Weather forecast designed
           </li>
         </ul>
       </nav>

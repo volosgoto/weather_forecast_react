@@ -27,6 +27,6 @@ export const getCity = city => async dispatch => {
 export const disableCityInput = () => {
   return {
     type: DISABLE_CITY_INPUT,
-    payload: true
+    payload: false
   };
 };

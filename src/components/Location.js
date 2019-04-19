@@ -15,10 +15,17 @@ import { connect } from "react-redux";
 class Location extends Component {
   setLocationFromInput = () => {
     this.props.setLocation(this.locationInput.value);
+    if (this.props.location.cities.length > 1) {
+      // let elementInput = ReactDOM.findDOMNode(this.locationInput);
+      // elementInput.setAttribute("disabled", true);
+
+      // !!! FIX 
+      this.props.disableCityInput()
+    }
     return (this.locationInput.value = "");
   };
 
-  componentDidUpdate() {}
+  componentDidUpdate() { }
 
   render() {
     let cities = this.props.location.cities;
@@ -34,8 +41,7 @@ class Location extends Component {
     // !!!!!!!!!!!Disable input
 
     if (cities.length > 1) {
-      let elementInput = ReactDOM.findDOMNode(this.locationInput);
-      elementInput.setAttribute("disabled", true);
+
     }
 
     // console.log("Location", cities);
@@ -95,7 +101,7 @@ class Location extends Component {
                           <img
                             src={`http://openweathermap.org/img/w/${
                               city.list[0].weather[0].icon
-                            }.png`}
+                              }.png`}
                             alt="weather_icon"
                           />
                         </div>

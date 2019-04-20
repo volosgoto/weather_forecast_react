@@ -18,7 +18,7 @@ export default class Alert extends Component {
                   showAlert: false
                 })
               }
-              type="button" class="close" data-dismiss="alert">
+              type="button" className="close" data-dismiss="alert">
               &times;
             </button>
             <strong>Warning!</strong> Limit 5 cities input!

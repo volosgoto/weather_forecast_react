@@ -15,34 +15,31 @@ import { connect } from "react-redux";
 class Location extends Component {
   setLocationFromInput = () => {
     this.props.setLocation(this.locationInput.value);
-    if (this.props.location.cities.length > 1) {
-      // let elementInput = ReactDOM.findDOMNode(this.locationInput);
-      // elementInput.setAttribute("disabled", true);
-
-      // !!! FIX 
-      this.props.disableCityInput()
+    this.locationInput.value = ""
+    if (this.props.location.cities.length == 4) {
+      this.props.disableCityInput();
     }
-    return (this.locationInput.value = "");
+    if ((this.props.location.cities.length == 4) || (this.props.location.disableInput == true)) {
+      let elementInput = ReactDOM.findDOMNode(this.locationInput);
+      return elementInput.disabled = true;
+    }
+
   };
 
-  componentDidUpdate() { }
 
   render() {
     let cities = this.props.location.cities;
+    let disableInput = this.props.location.disableInput;
 
     console.log(
       "this.props.location.disableInput",
       this.props.location.disableInput
     );
 
-    let disableInput = false;
-    // let elementInput = ReactDOM.findDOMNode(this.locationInput);
+
+    // 
 
     // !!!!!!!!!!!Disable input
-
-    if (cities.length > 1) {
-
-    }
 
     // console.log("Location", cities);
     return (

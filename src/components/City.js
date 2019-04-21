@@ -3,6 +3,7 @@ import { getCity } from "../actions/locationActions";
 import tempConverter from "../helpers/tempConverter";
 import pressureConverter from "../helpers/pressureConverter";
 import Spinner from "./Spinner";
+
 import { Link } from "react-router-dom";
 
 import { connect } from "react-redux";
@@ -48,15 +49,6 @@ class City extends Component {
             </div>
 
             <div className="col mt-1">
-              <Link
-                to={`/days/${city.name}`}
-                onClick={this.getCityInfo}
-                className="btn btn-info ml-1"
-              >
-                5 days forecast
-              </Link>
-
-              <button className="btn btn-primary ml-1">Hours forecast</button>
               <Link
                 to={`/about/${city.name}`}
                 onClick={this.getCityInfo}

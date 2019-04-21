@@ -3,7 +3,6 @@ import { SET_LOCATION, GET_CITY, DISABLE_CITY_INPUT } from "../actions/types";
 let initialState = {
   cities: [],
   city: [],
-  // disableInput: ""
 };
 
 export default function (state = initialState, action) {

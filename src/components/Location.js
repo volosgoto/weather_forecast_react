@@ -31,17 +31,6 @@ class Location extends Component {
     let cities = this.props.location.cities;
     let disableInput = this.props.location.disableInput;
 
-    console.log(
-      "this.props.location.disableInput",
-      this.props.location.disableInput
-    );
-
-
-    // 
-
-    // !!!!!!!!!!!Disable input
-
-    // console.log("Location", cities);
     return (
       <div>
         <div className="row">

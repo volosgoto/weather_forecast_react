@@ -5,9 +5,10 @@ import axios from "axios";
 const apiKey = "5aaae38caa80db1a92ab821d250efed7";
 const defaultLocation = "kyiv";
 
-export const getWeather = () => async dispatch => {
+export const getWeather = (city) => async dispatch => {
+  const location = city || defaultLocation;
   const res = await axios.get(
-    `http://api.openweathermap.org/data/2.5/forecast?q=${defaultLocation}&APPID=${apiKey}`
+    `http://api.openweathermap.org/data/2.5/forecast?q=${location}&APPID=${apiKey}`
   );
   // console.log('res', res);
   dispatch({

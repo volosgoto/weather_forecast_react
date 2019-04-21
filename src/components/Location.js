@@ -78,47 +78,45 @@ class Location extends Component {
           ) : null}
         </div>
         <div className="container">
-          <div className="row mt-3">
+          <div className="row mt-3 justify-content-center">
             {cities.map(city => {
               this.getCityInfo = () => {
                 this.props.getCity(city.city.name);
               };
               return (
-                <div key={city.city.name} className="col mb-2 text-left">
-                  <Link
-                    key={city.city.name}
-                    to={`/about/${city.city.name}`}
-                    onClick={this.getCityInfo}
-                    className="btn btn-info m-auto mb-1"
-                  >
-                    <div className="col" key={city.city.name}>
-                      <div className="row">
-                        <div className="col">
-                          <h2>{city.city.name}</h2>
-                          <img
-                            src={`http://openweathermap.org/img/w/${
-                              city.list[0].weather[0].icon
-                              }.png`}
-                            alt="weather_icon"
-                          />
-                        </div>
-                      </div>
-                      <div className="row">
-                        <div className="col">
-                          {city.list[0].weather[0].description}
-                        </div>
-                      </div>
-
-                      <div className="row">
-                        <div className="col mt-2">
-                          <h3>
-                            {tempConverter(city.list[0].main.temp)} &#8451;
-                          </h3>
-                        </div>
+                <Link
+                  key={city.city.name}
+                  to={`/about/${city.city.name}`}
+                  onClick={this.getCityInfo}
+                  className="btn btn-info m-auto mb-2"
+                >
+                  <div className="col" key={city.city.name}>
+                    <div className="row">
+                      <div className="col">
+                        <h2>{city.city.name}</h2>
+                        <img
+                          src={`http://openweathermap.org/img/w/${
+                            city.list[0].weather[0].icon
+                            }.png`}
+                          alt="weather_icon"
+                        />
                       </div>
                     </div>
-                  </Link>
-                </div>
+                    <div className="row">
+                      <div className="col">
+                        {city.list[0].weather[0].description}
+                      </div>
+                    </div>
+
+                    <div className="row">
+                      <div className="col mt-2">
+                        <h3>
+                          {tempConverter(city.list[0].main.temp)} &#8451;
+                          </h3>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
               );
             })}
           </div>

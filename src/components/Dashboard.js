@@ -4,6 +4,7 @@ import City from "./City";
 import Spinner from "./Spinner";
 import Navbar from "./layout/Navbar";
 import Footer from "./layout/Footer";
+import Days from "./Days";
 
 import { getWeather } from "../actions/weatherActions";
 import { connect } from "react-redux";
@@ -19,6 +20,7 @@ class Dashboard extends Component {
       return (
         <div>
           <Navbar />
+          <Days />
           <div className="container-fluid">
             <City />
             <Location weather={weather} />

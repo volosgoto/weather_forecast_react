@@ -48,8 +48,15 @@ class City extends Component {
             </div>
 
             <div className="col mt-1">
-              <button className="btn btn-primary ml-1">5 days forecast</button>
-              <button className="btn btn-primary ml-1">10 days forecast</button>
+              <Link
+                to={`/days/${city.name}`}
+                onClick={this.getCityInfo}
+                className="btn btn-info ml-1"
+              >
+                5 days forecast
+              </Link>
+
+              <button className="btn btn-primary ml-1">Hours forecast</button>
               <Link
                 to={`/about/${city.name}`}
                 onClick={this.getCityInfo}

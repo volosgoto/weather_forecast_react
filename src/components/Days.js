@@ -16,11 +16,13 @@ class Days extends Component {
 
   getFiveDaysWeather = dates => {
     let parsedDates = [];
-    let date;
+    let date = [];
     for (let key in dates) {
       key = dates[key];
-      date = key.dt_txt.split(" ")[0].split("-")[2];
-      key.dt_txt = date;
+      date.push(key.dt_txt.split(" ")[0].split("-")[2]);
+
+
+      key.dt_txt = date[key];
 
       parsedDates.push(key);
       console.log("Date", parsedDates);
@@ -108,7 +110,7 @@ class Days extends Component {
                             <img
                               src={`http://openweathermap.org/img/w/${
                                 city.weather[0].icon
-                              }.png`}
+                                }.png`}
                               alt="weather_icon"
                             />
                           </div>

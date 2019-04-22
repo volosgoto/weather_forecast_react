@@ -17,7 +17,7 @@ class Dashboard extends Component {
         <div>
           <Navbar />
           <div className="container-fluid">
-            <Test />
+            {/* <Test /> */}
             <City />
             <Location weather={weather} />
           </div>

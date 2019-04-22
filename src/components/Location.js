@@ -16,10 +16,10 @@ class Location extends Component {
   setLocationFromInput = () => {
     this.props.setLocation(this.locationInput.value);
     this.locationInput.value = ""
-    if (this.props.location.cities.length == 4) {
+    if (this.props.location.cities.length === 4) {
       this.props.disableCityInput();
     }
-    if ((this.props.location.cities.length == 4) || (this.props.location.disableInput == true)) {
+    if ((this.props.location.cities.length === 4) || (this.props.location.disableInput === true)) {
       let elementInput = ReactDOM.findDOMNode(this.locationInput);
       return elementInput.disabled = true;
     }

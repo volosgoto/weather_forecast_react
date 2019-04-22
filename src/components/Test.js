@@ -18,12 +18,20 @@ export default function Test() {
       let date = key.split(" ")[0].split("-")[2];
       let time = key.split(" ")[1].split(":")[0];
       console.log("Date", date, time);
-      parsedDates.push(date);
+      parsedDates.push(key);
     }
 
     let uniqueDate = [...new Set(parsedDates)];
-    return uniqueDate;
+    function fiveDaysWeather(uniqueDate) {
+      let fiveDaysWeather = [];
+      for (let i = 0; i < 5; i++) {
+        fiveDaysWeather[i] = uniqueDate[i];
+      }
+      return fiveDaysWeather;
+    }
+    return fiveDaysWeather(uniqueDate);
   };
+
   console.log(getFiveDaysWeather(dates));
 
   return (

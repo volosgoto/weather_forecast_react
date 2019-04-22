@@ -16,27 +16,31 @@ class Days extends Component {
 
   getFiveDaysWeather = dates => {
     let parsedDates = [];
+    let date;
     for (let key in dates) {
       key = dates[key];
-      let date = key.dt_txt.split(" ")[0].split("-")[2];
-      let time = key.dt_txt.split(" ")[1].split(":")[0];
-      console.log("Date", date, time);
+      date = key.dt_txt.split(" ")[0].split("-")[2];
+      key.dt_txt = date;
+
       parsedDates.push(key);
+      console.log("Date", parsedDates);
     }
 
     let uniqueDate = [...new Set(parsedDates)];
     function fiveDaysWeather(uniqueDate) {
-      let fiveDaysWeather = [];
-      for (let i = 0; i < 5; i++) {
-        fiveDaysWeather[i] = uniqueDate[i];
-      }
-      return fiveDaysWeather;
+      // let fiveDaysWeather = [];
+      // for (let i = 0; i < 5; i++) {
+      //   fiveDaysWeather[i] = uniqueDate[i];
+      // }
+      // return fiveDaysWeather;
+      console.log("uniqueDate", uniqueDate);
     }
     return fiveDaysWeather(uniqueDate);
   };
 
   render() {
     let dates = this.props.location.list;
+    // console.log(dates);
     let days = this.getFiveDaysWeather(dates);
 
     if (this.props.location) {

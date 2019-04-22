@@ -3,7 +3,6 @@ import { getCity } from "../actions/locationActions";
 import tempConverter from "../helpers/tempConverter";
 import pressureConverter from "../helpers/pressureConverter";
 import Spinner from "./Spinner";
-import Days from './Days'
 import { Link } from "react-router-dom";
 
 import { connect } from "react-redux";
@@ -16,7 +15,6 @@ class About extends Component {
 
   render() {
     if (this.props.location.city) {
-      console.log("About", this.props.location);
       let { name } = this.props.location.city;
       let { country } = this.props.location.city;
       let { humidity } = this.props.location.list[0].main;
@@ -61,10 +59,7 @@ class About extends Component {
             </div>
 
             <div className="col mt-5">
-              <Link
-                to={`/days/${name}`}
-                className="btn btn-primary ml-1"
-              >
+              <Link to={`/days/${name}`} className="btn btn-primary ml-1">
                 5 days forecast
               </Link>
               <Link to="/" className="btn btn-info ml-1">
@@ -72,7 +67,6 @@ class About extends Component {
               </Link>
             </div>
           </div>
-          <Days weather={this.props.location} />
         </div>
       );
     } else {

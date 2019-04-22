@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { getWeather } from "../actions/weatherActions";
+import { getCity } from "../actions/locationActions";
+
 import tempConverter from "../helpers/tempConverter";
 import pressureConverter from "../helpers/pressureConverter";
 import Spinner from "./Spinner";
@@ -7,74 +8,124 @@ import { Link } from "react-router-dom";
 
 import { connect } from "react-redux";
 
-export default class Days extends Component {
+class Days extends Component {
   componentDidMount() {
-    // const { city } = this.props.match.params;
-    // this.props.getWeather(city);
+    const { city } = this.props.match.params;
+    this.props.getCity(city);
   }
 
+  getFiveDaysWeather = dates => {
+    let parsedDates = [];
+    for (let key in dates) {
+      key = dates[key];
+      let date = key.dt_txt.split(" ")[0].split("-")[2];
+      let time = key.dt_txt.split(" ")[1].split(":")[0];
+      console.log("Date", date, time);
+      parsedDates.push(key);
+    }
+
+    let uniqueDate = [...new Set(parsedDates)];
+    function fiveDaysWeather(uniqueDate) {
+      let fiveDaysWeather = [];
+      for (let i = 0; i < 5; i++) {
+        fiveDaysWeather[i] = uniqueDate[i];
+      }
+      return fiveDaysWeather;
+    }
+    return fiveDaysWeather(uniqueDate);
+  };
+
   render() {
-    if (this.props.weather) {
-      // let { name } = this.props.location.city;
+    let dates = this.props.location.list;
+    let days = this.getFiveDaysWeather(dates);
+
+    if (this.props.location) {
+      let { name } = this.props.location.city;
       // let { country } = this.props.location.city;
       // let { humidity } = this.props.location.list[0].main;
-      // let { dt_txt } = this.props.location.list[0];
+      let { dt_txt } = this.props.location.list[0];
       // let { temp } = this.props.location.list[0].main;
       // let { pressure } = this.props.location.list[0].main;
-      // let { icon } = this.props.location.list[0].weather[0];
-      // let { description } = this.props.location.list[0].weather[0];
+      let { icon } = this.props.location.list[0].weather[0];
+      let { description } = this.props.location.list[0].weather[0];
       // let { wind } = this.props.location.list[0];
-
 
       // let list = this.props.location.cities[0];
       // let weatherListbyCity = list;
-      console.log('Days', this.props.weather.city.name);
+
       return (
         <div>
+          <div className="row mt-3">
+            <div className="col-md-8 m-auto text-center">
+              <h4 className="card-title">{name} 5 day forecast</h4>
+              <div className="row">
+                <div className="col">
+                  <h2>{dt_txt}</h2>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col">
+                  <img
+                    src={`http://openweathermap.org/img/w/${icon}.png`}
+                    alt="weather_icon"
+                  />
+                  <div className="col">{description}</div>
+                </div>
+              </div>
+              <div className="row ">
+                <div className="col mt-3 mb-2">
+                  {/* <h3>{tempConverter(temp)} &#8451;</h3> */}
+                </div>
+                {/* <div className="col mt-3 mb-2">Wind {wind.speed} m/sec</div> */}
+                <div className="col mt-3 mb-2">
+                  {/* Pressure {pressureConverter(pressure)} mmHg */}
+                </div>
+              </div>
+
+              <div className="col mt-1">
+                {/* <Link to={`/about/${name}`} className="btn btn-info ml-1">
+                  Back
+                </Link> */}
+              </div>
+            </div>
+          </div>
 
           <div className="row">
             <div className="container">
               <div className="row mt-3 justify-content-center">
-                {/* {cities.map(city => {
-
+                {days.map(city => {
                   return (
                     <div>
-                      <div className="col" key={city.city.name}>
+                      <div className="col" key={city.dt}>
                         <div className="row">
                           <div className="col">
-                            <h2>{city.city.name}</h2>
+                            <h2>{city.dt_txt}</h2>
+                            <h2>{city.weather[0].description}</h2>
                             <img
                               src={`http://openweathermap.org/img/w/${
-                                city.list[0].weather[0].icon
-                                }.png`}
+                                city.weather[0].icon
+                              }.png`}
                               alt="weather_icon"
                             />
                           </div>
                         </div>
                         <div className="row">
-                          <div className="col">
-                            {city.list[0].weather[0].description}
-                          </div>
+                          <div className="col">{}</div>
                         </div>
 
                         <div className="row">
                           <div className="col mt-2">
-                            <h3>
-                              {tempConverter(city.list[0].main.temp)} &#8451;
-                          </h3>
+                            <h3>{} &#8451;</h3>
                           </div>
                         </div>
                       </div>
                     </div>
                   );
-                })} */}
+                })}
               </div>
             </div>
           </div>
         </div>
-
-
-
       );
     } else {
       return <Spinner />;
@@ -82,3 +133,11 @@ export default class Days extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  location: state.location.city
+});
+
+export default connect(
+  mapStateToProps,
+  { getCity }
+)(Days);

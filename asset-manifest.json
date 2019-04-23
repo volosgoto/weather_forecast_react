@@ -1,15 +1,15 @@
 {
-  "main.css": "/weather_forecast_react/static/css/main.b7d06b1c.chunk.css",
-  "main.js": "/weather_forecast_react/static/js/main.a8021e4e.chunk.js",
-  "main.js.map": "/weather_forecast_react/static/js/main.a8021e4e.chunk.js.map",
-  "runtime~main.js": "/weather_forecast_react/static/js/runtime~main.6b477b9a.js",
-  "runtime~main.js.map": "/weather_forecast_react/static/js/runtime~main.6b477b9a.js.map",
-  "static/css/2.0eed1841.chunk.css": "/weather_forecast_react/static/css/2.0eed1841.chunk.css",
-  "static/js/2.3600836a.chunk.js": "/weather_forecast_react/static/js/2.3600836a.chunk.js",
-  "static/js/2.3600836a.chunk.js.map": "/weather_forecast_react/static/js/2.3600836a.chunk.js.map",
-  "index.html": "/weather_forecast_react/index.html",
-  "precache-manifest.30344bd8d58c4783cb6183e12e939cff.js": "/weather_forecast_react/precache-manifest.30344bd8d58c4783cb6183e12e939cff.js",
-  "service-worker.js": "/weather_forecast_react/service-worker.js",
-  "static/css/2.0eed1841.chunk.css.map": "/weather_forecast_react/static/css/2.0eed1841.chunk.css.map",
-  "static/css/main.b7d06b1c.chunk.css.map": "/weather_forecast_react/static/css/main.b7d06b1c.chunk.css.map"
+  "main.css": "/static/css/main.b7d06b1c.chunk.css",
+  "main.js": "/static/js/main.656071c3.chunk.js",
+  "main.js.map": "/static/js/main.656071c3.chunk.js.map",
+  "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
+  "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
+  "static/css/2.0eed1841.chunk.css": "/static/css/2.0eed1841.chunk.css",
+  "static/js/2.3600836a.chunk.js": "/static/js/2.3600836a.chunk.js",
+  "static/js/2.3600836a.chunk.js.map": "/static/js/2.3600836a.chunk.js.map",
+  "index.html": "/index.html",
+  "precache-manifest.3530faba9516d4e47d05f0e526754144.js": "/precache-manifest.3530faba9516d4e47d05f0e526754144.js",
+  "service-worker.js": "/service-worker.js",
+  "static/css/2.0eed1841.chunk.css.map": "/static/css/2.0eed1841.chunk.css.map",
+  "static/css/main.b7d06b1c.chunk.css.map": "/static/css/main.b7d06b1c.chunk.css.map"
 }

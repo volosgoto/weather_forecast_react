@@ -14,36 +14,33 @@ class Days extends Component {
     this.props.getCity(city);
   }
 
-  getFiveDaysWeather = dates => {
-    let parsedDates = [];
-    let date = [];
-    for (let key in dates) {
-      key = dates[key];
-      date.push(key.dt_txt.split(" ")[0].split("-")[2]);
-
-
-      key.dt_txt = date[key];
-
-      parsedDates.push(key);
-      console.log("Date", parsedDates);
-    }
-
-    let uniqueDate = [...new Set(parsedDates)];
-    function fiveDaysWeather(uniqueDate) {
-      // let fiveDaysWeather = [];
-      // for (let i = 0; i < 5; i++) {
-      //   fiveDaysWeather[i] = uniqueDate[i];
-      // }
-      // return fiveDaysWeather;
-      console.log("uniqueDate", uniqueDate);
-    }
-    return fiveDaysWeather(uniqueDate);
+  getFiveDaysWeatherDates = dates => {
+    return dates.map(element => {
+      return {
+        dt: element.dt,
+        main: element.main,
+        weather: element.weather,
+        wind: element.wind,
+        dt_txt: (() => {
+          return new Date(Date.parse(element.dt_txt)).getDate();
+        })()
+      };
+    });
   };
+
+  // getDays = () => {
+  //   let uniqueDate = [...new Set(this.getFiveDaysWeatherDates)];
+  //   return uniqueDate;
+  // };
 
   render() {
     let dates = this.props.location.list;
-    // console.log(dates);
-    let days = this.getFiveDaysWeather(dates);
+
+    console.log("Dates", dates);
+
+    console.log("getFiveDaysWeatherDates", this.getFiveDaysWeatherDates(dates));
+    // let days = this.getDays();
+    // console.log("days", days);
 
     if (this.props.location) {
       let { name } = this.props.location.city;
@@ -99,7 +96,7 @@ class Days extends Component {
           <div className="row">
             <div className="container">
               <div className="row mt-3 justify-content-center">
-                {days.map(city => {
+                {/* {days.map(city => {
                   return (
                     <div>
                       <div className="col" key={city.dt}>
@@ -110,7 +107,7 @@ class Days extends Component {
                             <img
                               src={`http://openweathermap.org/img/w/${
                                 city.weather[0].icon
-                                }.png`}
+                              }.png`}
                               alt="weather_icon"
                             />
                           </div>
@@ -127,7 +124,7 @@ class Days extends Component {
                       </div>
                     </div>
                   );
-                })}
+                })} */}
               </div>
             </div>
           </div>

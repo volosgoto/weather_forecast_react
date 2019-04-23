@@ -28,33 +28,32 @@ class Days extends Component {
     });
   };
 
-  // getDays = () => {
-  //   let uniqueDate = [...new Set(this.getFiveDaysWeatherDates)];
-  //   return uniqueDate;
-  // };
+  getDays = dates => {
+    let arr = this.getFiveDaysWeatherDates(dates);
+    let dt_txt_current = 0;
+    let resultArray = [];
+
+    arr.forEach(element => {
+      if (dt_txt_current != element.dt_txt) {
+        resultArray.push(element);
+        dt_txt_current = element.dt_txt;
+      }
+    });
+    resultArray.pop();
+    return resultArray;
+  };
 
   render() {
     let dates = this.props.location.list;
-
+    let filterByDate = this.getDays(dates);
     console.log("Dates", dates);
-
-    console.log("getFiveDaysWeatherDates", this.getFiveDaysWeatherDates(dates));
-    // let days = this.getDays();
-    // console.log("days", days);
 
     if (this.props.location) {
       let { name } = this.props.location.city;
-      // let { country } = this.props.location.city;
-      // let { humidity } = this.props.location.list[0].main;
       let { dt_txt } = this.props.location.list[0];
-      // let { temp } = this.props.location.list[0].main;
-      // let { pressure } = this.props.location.list[0].main;
+      let { temp } = this.props.location.list[0].main;
       let { icon } = this.props.location.list[0].weather[0];
       let { description } = this.props.location.list[0].weather[0];
-      // let { wind } = this.props.location.list[0];
-
-      // let list = this.props.location.cities[0];
-      // let weatherListbyCity = list;
 
       return (
         <div>
@@ -62,33 +61,20 @@ class Days extends Component {
             <div className="col-md-8 m-auto text-center">
               <h4 className="card-title">{name} 5 day forecast</h4>
               <div className="row">
-                <div className="col">
-                  <h2>{dt_txt}</h2>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col">
-                  <img
-                    src={`http://openweathermap.org/img/w/${icon}.png`}
-                    alt="weather_icon"
-                  />
-                  <div className="col">{description}</div>
-                </div>
+                <div className="col" />
               </div>
               <div className="row ">
-                <div className="col mt-3 mb-2">
-                  {/* <h3>{tempConverter(temp)} &#8451;</h3> */}
-                </div>
-                {/* <div className="col mt-3 mb-2">Wind {wind.speed} m/sec</div> */}
-                <div className="col mt-3 mb-2">
-                  {/* Pressure {pressureConverter(pressure)} mmHg */}
-                </div>
+                <div className="col mt-3 mb-2" />
+                <div className="col mt-3 mb-2" />
               </div>
 
               <div className="col mt-1">
-                {/* <Link to={`/about/${name}`} className="btn btn-info ml-1">
+                <Link to={`/about/${name}`} className="btn btn-success ml-1">
                   Back
-                </Link> */}
+                </Link>
+                <Link to="/" className="btn btn-info ml-1">
+                  <i className="fa fa-home" /> Back Home
+                </Link>
               </div>
             </div>
           </div>
@@ -96,13 +82,13 @@ class Days extends Component {
           <div className="row">
             <div className="container">
               <div className="row mt-3 justify-content-center">
-                {/* {days.map(city => {
+                {filterByDate.map(city => {
                   return (
                     <div>
                       <div className="col" key={city.dt}>
                         <div className="row">
                           <div className="col">
-                            <h2>{city.dt_txt}</h2>
+                            <h2>Date {city.dt_txt}</h2>
                             <h2>{city.weather[0].description}</h2>
                             <img
                               src={`http://openweathermap.org/img/w/${
@@ -118,13 +104,13 @@ class Days extends Component {
 
                         <div className="row">
                           <div className="col mt-2">
-                            <h3>{} &#8451;</h3>
+                            <h3>{tempConverter(temp)} &#8451;</h3>
                           </div>
                         </div>
                       </div>
                     </div>
                   );
-                })} */}
+                })}
               </div>
             </div>
           </div>

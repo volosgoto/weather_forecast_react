@@ -25,7 +25,6 @@ class About extends Component {
       let { description } = this.props.location.list[0].weather[0];
       let { wind } = this.props.location.list[0];
 
-      // function date(dt_txt) {}
       return (
         <div className="row mt-3">
           <div className="col-md-8 m-auto text-center">

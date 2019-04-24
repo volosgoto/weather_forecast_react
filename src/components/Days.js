@@ -46,7 +46,7 @@ class Days extends Component {
   render() {
     let dates = this.props.location.list;
     let filterByDate = this.getDays(dates);
-    console.log("Dates", dates);
+    // console.log("Dates", dates);
 
     if (this.props.location) {
       let { name } = this.props.location.city;
